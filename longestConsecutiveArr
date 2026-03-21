@@ -1,0 +1,23 @@
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        Set<Integer> freqMap = new HashSet();
+        for (int i : nums) {
+            freqMap.add(i);
+        }
+
+        int count = 0;
+        int ans = 0;
+        for (Integer i : freqMap) {
+            int find = (int)i-1;
+            if (!freqMap.contains(find)) {
+                while (freqMap.contains(find+1)) {
+                    count += 1;
+                    ans = Math.max(ans, count);
+                    find += 1;
+                }
+            }
+            count = 0;
+        }
+        return ans;
+    }
+}
